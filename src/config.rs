@@ -73,13 +73,19 @@ lazy_static::lazy_static! {
            // 添加一次性密碼長度預設為8
     	map.insert("temporary-password-length".to_owned(), "8".to_owned());
             // 添加這一行來預設勾選數字密碼
-        map.insert("allow-numeric-one-time-password".to_owned(), "Y".to_owned());
+        //map.insert("allow-numeric-one-time-password".to_owned(), "Y".to_owned());
         RwLock::new(map)
     };
     pub static ref OVERWRITE_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref DEFAULT_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref OVERWRITE_DISPLAY_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
-    pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = {
+        let mut map = HashMap::new();
+        // 添加到這裡作為本地預設設定
+        map.insert("temporary-password-length".to_owned(), "8".to_owned());
+        map.insert("allow-numeric-one-time-password".to_owned(), "Y".to_owned());
+        RwLock::new(map)
+    };
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
