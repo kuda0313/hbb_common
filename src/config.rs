@@ -82,6 +82,7 @@ lazy_static::lazy_static! {
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
         map.insert("enable-check-update".to_owned(), "N".to_owned());
+        map.insert("enable-udp-punch".to_owned(), "Y".to_owned());
         // 添加到這裡作為本地預設設定
         //map.insert("temporary-password-length".to_owned(), "8".to_owned());
         //map.insert("allow-numeric-one-time-password".to_owned(), "Y".to_owned());
